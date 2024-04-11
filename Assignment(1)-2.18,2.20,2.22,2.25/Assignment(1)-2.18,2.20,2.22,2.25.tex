@@ -1,0 +1,455 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs}
+\usepackage[inline]{enumitem}
+
+\title{\textbf{多元统计分析课程作业1}}
+\author{Phlins}
+\date{\today}
+\linespread{1.5}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+\newcounter{problemname}
+\newenvironment{problem}{\begin{shaded}\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\end{shaded}\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\par}
+\newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\par}
+
+\begin{document}
+
+\maketitle
+
+\begin{problem}
+    考虑点$(x_1,x_2)$的集合，对于$c^2=1$和$c^2=4$从原点到该点的距离由下式给出：
+    $$
+    c^2=4x_1^2+3x_2^2-2\sqrt{2}x_1x_2
+    $$
+确定常数距离椭圆的长短轴及其相应的长度，画其草图并注明位置。当$c^2$增大时会怎么样？
+\end{problem}
+
+\begin{solution}
+
+改变上式形式，
+$$
+    \because c^2=x'Ax\\
+\therefore a_{11}=4,a_{22}=3,a_{12}=a_{21}=-\sqrt{2}
+\therefore A = \begin{bmatrix}
+4 & -\sqrt{2} \\
+\sqrt{2} & 3
+\end{bmatrix}
+$$
+
+计算A的特征值：
+
+$$
+|A-\lambda I|=\begin{bmatrix}
+4-\lambda & -\sqrt{2}\\
+-\sqrt{2} & 3-\lambda
+\end{bmatrix}=(4-\lambda)(3-\lambda)-2=0\\
+\therefore \lambda_1=5,\lambda_2=2
+$$
+
+计算矩阵A的特征值归一化特征向量对：
+
+当$Ax=\lambda_1 x$时，
+$$
+\therefore 
+\begin{bmatrix}
+4-\lambda & -\sqrt{2}\\
+-\sqrt{2} & 3-\lambda
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}=5
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}\\
+\Rightarrow x_1=-\sqrt{2}x_2\\
+\therefore e_1= \frac{1}{\sqrt{3}}\begin{bmatrix}
+\sqrt{2}\\
+-1
+\end{bmatrix}\\
+$$
+
+当$Ax=\lambda_2 x$时，
+$$
+\therefore 
+\begin{bmatrix}
+4-\lambda & -\sqrt{2}\\
+-\sqrt{2} & 3-\lambda
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}=2
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}\\
+\Rightarrow x_2=\sqrt{2}x_1\\
+\therefore e_2= \frac{1}{\sqrt{3}}\begin{bmatrix}
+1\\
+\sqrt{2}
+\end{bmatrix}\\
+$$
+
+当$c^2=1$时，沿向量$e_1,e_2$的常距椭圆的半长度（长轴和短轴）为：
+$$
+\frac{c}{\sqrt{\lambda_1}}=\frac{1}{\sqrt{5}}=0.447,\frac{c}{\sqrt{\lambda_2}}=\frac{1}{\sqrt{2}}=0.707
+$$
+
+当$c^2=4$时，沿向量$e_1,e_2$的常距椭圆的半长度（长轴和短轴）为：
+$$
+\frac{c}{\sqrt{\lambda_1}}=\frac{2}{\sqrt{5}}=0.894,\frac{c}{\sqrt{\lambda_2}}=\frac{2}{\sqrt{2}}=1.414
+$$
+
+结论是：当c增大时，常距椭圆的半长度（长轴和短轴）以c的比例同时增大。
+
+
+\end{solution}
+
+\begin{note}
+    第一题的图就不画了。
+    $$
+    e=\frac{1}{\sqrt{x_1^2+x_2^2}}\begin{bmatrix}
+        x_1\\
+        x_2\\
+    \end{bmatrix}
+    $$
+\end{note}
+
+
+\begin{problem}
+已知:
+$$
+A = \begin{bmatrix}
+2 & 1 \\
+1 & 3
+\end{bmatrix}
+$$
+请计算平方根矩阵 $A^\frac{1}{2}$以及$A^{-\frac{1}{2}}$。
+然后证明下式：
+$$
+A^\frac{1}{2}A^{-\frac{1}{2}}=A^{-\frac{1}{2}}A^\frac{1}{2}=I
+$$
+\end{problem}
+
+\begin{solution}
+    计算A的特征值：
+    $$
+    |A-\lambda I|=\begin{bmatrix}
+    2-\lambda & 1\\
+    1 & 3-\lambda
+    \end{bmatrix}=(2-\lambda)(3-\lambda)-1=0\\
+    $$
+
+    $$
+    \therefore \lambda_1=\frac{5+\sqrt{5}}{2}=3.618,\lambda_2=\frac{5-\sqrt{5}}{2}=1.382
+    $$
+    计算矩阵A的特征值归一化特征向量对，当$Ax=\lambda x$时
+    $$
+    \therefore 
+    \begin{bmatrix}
+    2 & 1\\
+    1 & 3
+    \end{bmatrix}
+    \begin{bmatrix}
+    x_1\\
+    x_2
+    \end{bmatrix}=3.618
+    \begin{bmatrix}
+    x_1\\
+    x_2
+    \end{bmatrix}\\
+    \Rightarrow (x_1,x_2)=(1,1.618)\\
+    \therefore e_1= (0.5257,0.8507)^T\\
+    $$
+    $$
+    \text{同理:}\lambda_2=1.382,e_2= (0.8507,-0.5257)^T
+    $$
+    
+    $$
+    A^\frac{1}{2}=\sqrt{\lambda_1}e_1 e_1^T+\sqrt{\lambda_2}e_2 e_2^T=
+    \begin{bmatrix}
+        1.376 & 0.325\\
+        0.325 & 1.701
+        \end{bmatrix}
+    $$
+
+    $$
+    A^{-\frac{1}{2}}=\frac{1}{\sqrt{\lambda_1}}e_1 e_1^T+\frac{1}{\sqrt{\lambda_2}}e_2 e_2^T=
+    \begin{bmatrix}
+        0.760 & -0.145\\
+        -0.145 & 0.615
+        \end{bmatrix}
+    $$
+    验证则可得证：
+    $$
+    A^\frac{1}{2} A^{-\frac{1}{2}}=
+    \begin{bmatrix}
+        1 & 0\\
+        0 & 1
+        \end{bmatrix}
+    =A^{-\frac{1}{2}}A^\frac{1}{2}
+    $$
+
+\end{solution}
+
+
+\begin{problem}
+已知:
+$$
+A = \begin{bmatrix}
+4 & 8 & 8 \\
+3 & 6 & -9
+\end{bmatrix}
+$$
+\begin{enumerate}[label=(\alph*)]
+    \item 计算$AA'$及其特征值和特征向量
+    \item 计算$A'A$及其特征值和特征向量，(b)的结果和(a)的结果是否一致？
+    \item 求出$A$的奇异值分解。
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}
+    $$
+    AA^T=
+    \begin{bmatrix}
+        4 & 8 & 8 \\
+        3 & 6 & -9
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & 3 \\
+            8 & 6\\
+            8&-9
+            \end{bmatrix}
+            =    \begin{bmatrix}
+                144 & -12\\
+                -12 & 126
+                \end{bmatrix}
+    $$
+    $$
+    0=|A-\lambda I|=(144-\lambda)(126-\lambda)-(12)^2=(150-\lambda)(120-\lambda)
+    $$
+    $$
+    \therefore \lambda_1=150,\lambda_2=120
+    $$
+
+    当$Ax=\lambda_1 x$时，
+$$
+\begin{bmatrix}
+144 & -12\\
+-12 & 126
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}=150
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix},\\
+\begin{cases}
+    &144x_1-12x_2=150x_1\\
+    &-12x_1+126x_2=150x_2
+\end{cases},\\
+x_1=-2x_2
+$$
+可得(a)
+$$
+\therefore e_1= \frac{1}{\sqrt{5}}\begin{bmatrix}
+    2\\
+    -1
+    \end{bmatrix}
+\text{同理}\lambda_2=120\text{时},e_2= \frac{1}{\sqrt{5}}\begin{bmatrix}
+    1\\
+    2
+    \end{bmatrix}
+$$
+
+$$
+A^TA=
+    \begin{bmatrix}
+        4 & 3 \\
+        8 & 6\\
+        8&-9
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & 8 & 8 \\
+            3 & 6 & -9
+            \end{bmatrix}
+        =            \begin{bmatrix}
+            25 & 50 & 5 \\
+            50 & 100 & 10\\
+            5 & 10 & 145
+            \end{bmatrix}
+$$
+$$
+0=|A-\lambda I|=
+\begin{bmatrix}
+    25-\lambda & 50 & 5 \\
+    50 & 100-\lambda & 10\\
+    5 & 10 & 145-\lambda
+    \end{bmatrix}=0
+$$
+$$
+\therefore \text{解得} \lambda_1=150,\lambda_2=120,\lambda_3=0
+$$
+当$Ax=\lambda_1 x$时，
+$$
+\begin{bmatrix}
+    25 & 50 & 5 \\
+    50 & 100 & 10\\
+    5 & 10 & 145
+    \end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3
+\end{bmatrix}=150
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3
+\end{bmatrix},\\
+\begin{cases}
+    &-120x_1+60x_2=0\\
+    &-25x_1+5x_3=0
+\end{cases},\\
+e_1=\frac{1}{\sqrt{30}}\begin{bmatrix}
+    1\\
+    2\\
+    5
+    \end{bmatrix}
+$$
+同理可得(b)
+$$
+e_2=\frac{1}{\sqrt{6}}\begin{bmatrix}
+    1\\
+    2\\
+    -1
+    \end{bmatrix},
+    e_3=\frac{1}{\sqrt{5}}\begin{bmatrix}
+        2\\
+        -1\\
+        0
+        \end{bmatrix}
+$$
+(c)根据$A=\sqrt{\lambda_1}e_1 e_1^T+\sqrt{\lambda_2}e_2 e_2^T$
+$$
+A=   \begin{bmatrix}
+    4 & 8 & 8 \\
+    3 & 6 & -9
+    \end{bmatrix}=
+    \sqrt{150}
+    \frac{1}{\sqrt{5}}\begin{bmatrix}
+        2\\
+        -1
+        \end{bmatrix}
+    \frac{1}{\sqrt{30}}\begin{bmatrix}
+        1\\
+        2\\
+        5
+        \end{bmatrix}+
+        \sqrt{120}
+    \frac{1}{\sqrt{5}}\begin{bmatrix}
+        1\\
+        2
+        \end{bmatrix}
+    \frac{1}{\sqrt{6}}\begin{bmatrix}
+        1\\
+        2\\
+        -1
+        \end{bmatrix}
+$$
+
+
+\end{solution}
+
+
+
+\begin{problem}
+    设$X$有协方差矩阵
+$$
+A = \begin{bmatrix}
+25 & -2 & 4 \\
+-2 & 4 & 1 \\
+4 & 1 & 9
+\end{bmatrix}
+$$
+\begin{enumerate}[label=(\alph*)]
+\item 确定$\rho$和$V^\frac{1}{2}$
+\item 用矩阵乘法验证关系式：
+  $$
+  V^\frac{1}{2} \rho V^\frac{1}{2}=\Sigma
+  $$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+$$
+\Sigma=Cov(x)=\begin{bmatrix}
+    25 & -2 &4\\
+    -2&4&1\\
+    4&1&9
+\end{bmatrix}
+$$
+$$
+\therefore \sigma_{11}=25,\sigma_{22}=4,\sigma_{33}=9,
+\sqrt{\sigma_{11}}=5,\sqrt{\sigma_{22}}=2,\sqrt{\sigma_{33}}=3
+$$
+已知总体相关系数$\rho_{ik}=\frac{\sigma_{ik}}{\sqrt{\sigma_{ii}}\sqrt{\sigma_{kk}}}$
+$$
+\rho=\begin{bmatrix}
+    \frac{25}{5\cdot 5} & \frac{-2}{2\cdot 5} & \frac{4}{3\cdot 5} \\
+    \frac{-2}{2\cdot 5} & \frac{4}{2\cdot 2} & \frac{1}{3\cdot 2} \\
+    \frac{4}{5\cdot 3} & \frac{1}{2\cdot 3} & \frac{9}{3\cdot 3} 
+\end{bmatrix}=\begin{bmatrix}
+    1 & -\frac{1}{5} & \frac{4}{15}\\
+    -\frac{1}{5} & 1 & \frac{1}{6}\\
+    \frac{4}{15} & \frac{1}{6} & 1
+\end{bmatrix}
+$$
+已知$p\times p$标准差矩阵$V^{\frac{1}{2}}=\begin{bmatrix}
+    \sqrt{\sigma_{11}} & 0 & \cdots & 0\\
+    0 & \sqrt{\sigma_{22}} & \cdots & 0\\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots &\sqrt{\sigma_{pp}}\\
+\end{bmatrix}
+$
+$$
+V^{\frac{1}{2}}=\begin{bmatrix}
+    5 & 0 & 0\\
+    0 & 2 & 0\\
+    0 & 0 & 3
+\end{bmatrix}
+$$
+$$
+V^\frac{1}{2} \rho V^\frac{1}{2}=\begin{bmatrix}
+    5 & 0 & 0\\
+    0 & 2 & 0\\
+    0 & 0 & 3
+\end{bmatrix}
+\begin{bmatrix}
+    1 & -\frac{1}{5} & \frac{4}{15}\\
+    -\frac{1}{5} & 1 & \frac{1}{6}\\
+    \frac{4}{15} & \frac{1}{6} & 1
+\end{bmatrix}
+\begin{bmatrix}
+    5 & 0 & 0\\
+    0 & 2 & 0\\
+    0 & 0 & 3
+\end{bmatrix}=
+\begin{bmatrix}
+    25 & -2 & 4 \\
+    -2 & 4 & 1 \\
+    4 & 1 & 9
+    \end{bmatrix}=\Sigma \text{得证}
+$$
+\end{solution}
+\begin{note}
+同理
+$\rho=(V^\frac{1}{2})^{-1}\Sigma(V^\frac{1}{2})^{-1}$
+\end{note}
+
+\end{document}
