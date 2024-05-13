@@ -1,0 +1,425 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs}
+\usepackage[inline]{enumitem}
+
+\title{\textbf{多元统计分析期中考试}}
+\author{陈王子\\202103150503}
+\date{\today}
+\linespread{1.5}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+\newcounter{problemname}
+\newenvironment{problem}{\begin{shaded}\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\end{shaded}\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\par}
+\newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\par}
+
+\begin{document}
+
+\maketitle
+
+\begin{problem}
+    2.20\\
+    已知:
+    \[
+    A = \begin{bmatrix}
+        2 & 1 \\
+        1 & 3
+        \end{bmatrix}
+    \]
+    请计算平方根矩阵 $A^\frac{1}{2}$以及$A^{-\frac{1}{2}}$。
+    然后证明下式：
+    \[
+    A^\frac{1}{2}A^{-\frac{1}{2}}=A^{-\frac{1}{2}}A^\frac{1}{2}=I
+    \]
+\end{problem}
+
+\begin{solution}
+    计算A的特征值：
+    \[
+        \begin{gathered}
+            |A-\lambda I|=\begin{bmatrix}
+                2-\lambda & 1\\
+                1 & 3-\lambda
+            \end{bmatrix}
+            =(2-\lambda)(3-\lambda)-1=0\\
+            \therefore \lambda_1=\frac{5+\sqrt{5}}{2}=3.618,
+            \lambda_2=\frac{5-\sqrt{5}}{2}=1.382\\
+            \text{计算矩阵A的特征值归一化特征向量对，当} Ax=\lambda x \text{时}\\
+            \therefore 
+                \begin{bmatrix}
+                    2 & 1\\
+                    1 & 3
+                \end{bmatrix}
+                \begin{bmatrix}
+                    x_1\\
+                    x_2
+                \end{bmatrix}
+                =3.618
+                \begin{bmatrix}
+                    x_1\\
+                    x_2
+                \end{bmatrix}\\
+            \Rightarrow (x_1,x_2)=(1,1.618)\\
+            \therefore e_1= (0.5257,0.8507)^T\\
+            \text{同理:}\lambda_2=1.382,e_2= (0.8507,-0.5257)^T\\
+            A^\frac{1}{2}
+            =\sqrt{\lambda_1}e_1 e_1^T+\sqrt{\lambda_2}e_2 e_2^T
+            =\begin{bmatrix}
+                    1.376 & 0.325\\
+                    0.325 & 1.701
+                \end{bmatrix}\\
+            A^{-\frac{1}{2}}
+            =\frac{1}{\sqrt{\lambda_1}}e_1 e_1^T+\frac{1}{\sqrt{\lambda_2}}e_2 e_2^T
+            =\begin{bmatrix}
+                    0.760 & -0.145\\
+                    -0.145 & 0.615
+                \end{bmatrix}\\
+            \text{验证则可得证：}
+            A^\frac{1}{2} A^{-\frac{1}{2}}=
+            \begin{bmatrix}
+                1 & 0\\
+                0 & 1
+                \end{bmatrix}
+            =A^{-\frac{1}{2}}A^\frac{1}{2}
+        \end{gathered}
+    \]
+\end{solution}
+
+\begin{problem}
+    4.8.\\
+    已知$X_1~N(0,1)$
+    \begin{equation*}
+    X_2=
+        \begin{cases}
+            -X_1,& -1\leq x_1 \leq 1\\
+            X_1,&  x_1>1 \text{或} x_1<-1
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+        \item 证明$X_1~N(0,1)$
+        \item 证明$X_1,X_2$不符合二元正态分布
+    \end{enumerate}
+\end{problem}
+
+\begin{note}
+
+\end{note}
+
+\begin{solution}
+    
+\end{solution}
+
+\newpage
+\begin{problem}
+    2.32\\
+    给定了随机向量$\mathbf{X}^T=(X_1,X_2,X_3,X_4,X_5)$，均值向量$\mu^T=(2,4,-1,3,0)$，
+    以及方差-协方差矩阵$\bm{\Sigma_{X}}$
+    \[\bm{\Sigma_{X}}=
+            \begin{bmatrix}
+                4 & -1 & 0.5 & -0.5 & 0\\
+                -1 & 3 & 1 & -1 & 0\\
+                0.5 & 1 & 6 & 1 & -1\\
+                -0.5 & -1 & 1 & 4 & 0\\
+                0 & 0 & -1 & 0 & 2
+            \end{bmatrix}\]
+    X划分为\[\mathbf{X}=
+                \begin{bmatrix}
+                    X_1\\
+                    X_2\\
+                    \vdots\\
+                    X_3\\
+                    X_4\\
+                    X_5
+                \end{bmatrix}=
+                \begin{bmatrix}
+                    \mathbf{X}^{(1)}\\
+                    \vdots\\
+                    \mathbf{X}^{(2)}
+                \end{bmatrix}\]
+    又\[
+        \mathbf{A}=
+        \begin{bmatrix}
+            1 & -1\\
+            1 & 1
+        \end{bmatrix},
+        \mathbf{B}=
+        \begin{bmatrix}
+            1 & 1 & 1\\
+            1 & 1 & -2
+        \end{bmatrix}
+        \]
+    考虑$\mathbf{A}\mathbf{X}^{(1)}$和$\mathbf{B}\mathbf{X}^{(2)}$的线性组合，求：
+    \begin{enumerate}[label=(\alph*)]
+        \item $E(\mathbf{X}^{(1)})$
+        \item $E(\mathbf{A}\mathbf{X}^{(1)})$
+        \item $Cov(\mathbf{X}^{(1)})$
+        \item $Cov(\mathbf{A}\mathbf{X}^{(1)})$
+        \item $E(\mathbf{X}^{(2)})$
+        \item $E(\mathbf{B}\mathbf{X}^{(2)})$
+        \item $Cov(\mathbf{X}^{(2)})$
+        \item $Cov(\mathbf{B}\mathbf{X}^{(2)})$
+        \item $Cov(\mathbf{X}^{(1)},\mathbf{X}^{(2)})$
+        \item $Cov(\mathbf{A}\mathbf{X}^{(1)},\mathbf{B}\mathbf{X}^{(2)})$
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        \[
+            E(\mathbf{X}^{(1)})=\mu^{(1)}
+            =\begin{bmatrix}
+                2\\
+                4
+            \end{bmatrix}
+        \]
+        \item 
+        \[
+            \mathbf{A}\mu^{(1)}=
+            \begin{bmatrix}
+                1 & -1\\
+                1 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                2\\
+                4
+            \end{bmatrix}=
+            \begin{bmatrix}
+                -2\\
+                6
+            \end{bmatrix}
+        \]
+        \item
+        \[
+            Cov(\mathbf{X}^{(1)})=\bm{\Sigma_{11}}=
+            \begin{bmatrix}
+                4 & -1 \\
+                -1 & 3
+            \end{bmatrix}
+        \] 
+        \item 
+        \[
+            Cov(\mathbf{A}\mathbf{X}^{(1)})=\mathbf{A}\bm{\Sigma_{11}}\mathbf{A^T}=
+            \begin{bmatrix}
+                1 & -1\\
+                1 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+                4 & -1 \\
+                -1 & 3
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 1\\
+                -1 & 1
+            \end{bmatrix}
+            =\begin{bmatrix}
+                9 & 1 \\
+                1 & 5
+            \end{bmatrix}
+        \]
+        \item 
+        \[
+            E(\mathbf{X}^{(2)})=\mu^{(2)}=
+            \begin{bmatrix}
+                -1\\
+                0\\
+                3
+            \end{bmatrix}
+        \]
+        \item 
+        \[
+            \mathbf{B}\mu^{(2)}=
+            \begin{bmatrix}
+                1 & 1 & 1\\
+                1 & 1 & -2
+            \end{bmatrix}
+            \begin{bmatrix}
+                -1\\
+                0\\
+                3
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                2\\
+                -7
+            \end{bmatrix}
+        \]
+        \item 
+        \[
+            Cov(\mathbf{X}^{(2)})=\bm{\Sigma_{22}}=
+            \begin{bmatrix}
+                6 & 1 & -1 \\
+                1 & 4 & 0\\
+                -1 & 0 & 2
+            \end{bmatrix}
+        \] 
+        \item 
+        \[
+            Cov(\mathbf{B}\mathbf{X}^{(2)})=\mathbf{B}\bm{\Sigma_{22}}\mathbf{B^T}=
+            \begin{bmatrix}
+                1 & 1 & 1\\
+                1 & 1 & -2
+            \end{bmatrix}
+            \begin{bmatrix}
+                6 & 1 & -1 \\
+                1 & 4 & 0\\
+                -1 & 0 & 2
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 1 \\
+                1 & 1\\
+                1 & -2
+            \end{bmatrix}=
+            \begin{bmatrix}
+                12 & 9\\
+                9 & 24
+            \end{bmatrix}
+        \]
+        \item 
+        \[
+            Cov(\mathbf{X}^{(1)},\mathbf{X}^{(2)})=
+            \begin{bmatrix}
+                \frac{1}{2} & -\frac{1}{2} & 0\\
+                1 & -1 & 0
+            \end{bmatrix}
+        \]
+        \item 
+        \[
+            Cov(\mathbf{A}\mathbf{X}^{(1)},\mathbf{B}\mathbf{X}^{(2)})=\mathbf{A}\bm{\Sigma_{12}}\mathbf{B^T}\\
+            =\begin{bmatrix}
+                1 & 1 \\
+                1 & 1\\
+                1 & -2
+            \end{bmatrix}
+            \begin{bmatrix}
+                \frac{1}{2} & -\frac{1}{2} & 0\\
+                1 & -1 & 0
+            \end{bmatrix}
+            \begin{bmatrix}
+                1 & 1 \\
+                1 & 1\\
+                1 & -2
+            \end{bmatrix}=
+            \begin{bmatrix}
+                0 & 0\\
+                0 & 0
+            \end{bmatrix}
+        \]
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}
+    4.18.\\
+    试根据来自二维正态总体的随机样本
+        $$
+        X=\begin{bmatrix} {3} & {6} \\ {4} & {4} \\ {5} & {7} \\ {4} & {7} \\ \end{bmatrix} 
+        $$
+    求 $2 \times1$ 均值向量$\mu$和 $2 \times2$ 协方差矩阵$\Sigma$的极大似然估计
+\end{problem}
+
+\begin{solution}
+    根据 4.11 结果， $\mu$ 和 $\Sigma$ 的最大似然估计分别为 $\hat{\mu}=\bar{x}=[4,6]^{\prime}$
+    \begin{equation*}
+        \begin{aligned}
+        &\frac{1}{n}\sum_{j=1}^{n}\left(x_{j}-\bar{x}\right)\left(x_{j}-\bar{x}\right)^{\prime} \\ 
+            &= \frac{1}{4} 
+            \left\{
+                \left(\begin{bmatrix}3\\6\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)\left(\begin{bmatrix}3\\6\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)^{\prime}+
+                \left(\begin{bmatrix}4\\4\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)\left(\begin{bmatrix}4\\4\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)^{\prime}\right.\\
+            &\left.+\left(\begin{bmatrix}5\\7\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)\left(\begin{bmatrix}5\\7\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)^{\prime}+
+                \left(\begin{bmatrix}4\\7\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)\left(\begin{bmatrix}4\\7\end{bmatrix}-\begin{bmatrix}4\\6\end{bmatrix}\right)^{\prime}
+            \right\}\\
+                &=\frac{1}{4}
+                \left( \begin{bmatrix}-1\\0\end{bmatrix} \begin{bmatrix}-1&0\end{bmatrix} +
+                         \begin{bmatrix}0\\-2\end{bmatrix} \begin{bmatrix}0&-2\end{bmatrix} + 
+                         \begin{bmatrix}1\\1\end{bmatrix} \begin{bmatrix}1&1\end{bmatrix} + 
+                         \begin{bmatrix}0\\1\end{bmatrix} \begin{bmatrix}0&1\end{bmatrix} 
+                \right)\\
+            &=\frac{1}{4}\begin{bmatrix} 
+                            {2}&{1}\\
+                            {1}&{6}
+                        \end{bmatrix}
+        \end{aligned}
+    \end{equation*}
+\end{solution}
+
+
+\begin{problem}
+    5.1
+    \begin{enumerate}[label=(\alph*)]
+        \item 使用给定的数据计算检验统计量 $T^{2}$ 以检验原假设 $H_{0} \colon \mu^{\prime}= [7,11]$，
+        $$
+        \mathbf{X}= \begin{bmatrix} 
+                        {2} & {12} \\ 
+                        {8} & {9} \\ 
+                        {6} & {9} \\ 
+                        {8} & {10} \\ 
+                    \end{bmatrix}
+        $$
+        \item 描述（a）部分中 $T^{2}$ 统计量的分布情况。
+        \item 结合（a）和（b）的结果，在 $\alpha=0.05$ 的显著性水平下对原假设 $H_{0}$ 进行检验。你会得出什么结论？
+    \end{enumerate}
+\end{problem}
+
+
+\begin{solution}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        \begin{gather*}
+            \text{变量数}p=2,\text{样本大小}n=4\\
+            \bar{x}=\begin{bmatrix}
+                \frac{2+8+6+8}{n}\\
+                \frac{12+9+9+10}{n}
+            \end{bmatrix}
+            =\begin{bmatrix}
+                6\\
+                10
+            \end{bmatrix},\\
+            S_{ij} = \frac{1}{n-1} \sum_{k=1}^{n} (x_{ki} - \bar{x}_i)(x_{kj} - \bar{x}_j) ,
+            \mathbf{S}=\begin{bmatrix}
+                8 & -\frac{10}{3}\\
+                -\frac{10}{3} & 2
+            \end{bmatrix},\\
+            T^{2}=n(\bar{x} - \mu^\prime)^\top \mathbf{S}^{-1} (\bar{x} - \mu^\prime)=\frac{150}{11}=13.64
+        \end{gather*}
+        \item 
+        \begin{gather*}
+            \because T^{2} \sim \frac{( n-1 ) p} {( n-p )} F_{p, n-p},\\
+            \therefore T^{2} \sim 3F_{2,2}
+        \end{gather*}
+        \item 
+        \begin{gather*}
+            H_{0} \colon \mu^{\prime}= [7,11]\\
+            \because \alpha=0.05 \therefore F_{2,2}(0.05)=19\\
+            \because T^{2}=13.64<3F_{2,2}(0.05)=57\\
+            \therefore \alpha=0.05\text{时接受原假设} H_{0}
+        \end{gather*}
+
+      \end{enumerate}
+\end{solution}
+
+\begin{problem}
+    4.11.\\
+    A是方阵，请证明：
+    \begin{equation*}
+        \begin{aligned}
+            |A|&=|A_{22}||A_{11}-A_{12}A_{22}^{-1}A_{21}| \quad (|A_{22}|\neq 0)\\
+            &=|A_{11}||A_{22}-A_{21}A_{11}^{-1}A_{12}| \quad (|A_{11}|\neq 0)
+        \end{aligned}
+    \end{equation*}
+\end{problem}
+
+\begin{note}
+    将A分块并证明：
+\end{note}
+
+\begin{problem}
+    
+    
+\end{problem}
+
+
+
+
+
+
+\end{document}

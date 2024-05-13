@@ -1,0 +1,511 @@
+\documentclass[12pt, a4paper, oneside]{ctexart}
+\usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs}
+\usepackage[inline]{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{multirow, makecell}
+\usepackage{colortbl}
+\usepackage{booktabs}
+
+\pgfplotsset{compat=1.16}
+
+\title{\textbf{多元统计分析课程作业4}}
+\author{陈王子\\202103150503}
+\date{\today}
+\linespread{1.5}
+\definecolor{shadecolor}{RGB}{241, 241, 255}
+\newcounter{problemname}
+\newenvironment{problem}{\begin{shaded}\stepcounter{problemname}\par\noindent\textbf{题目\arabic{problemname}. }}{\end{shaded}\par}
+\newenvironment{solution}{\par\noindent\textbf{解答. }}{\par}
+\newenvironment{note}{\par\noindent\textbf{题目\arabic{problemname}的注记. }}{\par}
+
+\begin{document}
+
+\maketitle
+
+\begin{problem}
+    6.6.\\
+    利用练习6.8中处理2和处理3的数据：
+    处理2：$\begin{bmatrix} 3 \\ 3 \end{bmatrix}, \begin{bmatrix} 1 \\ 6 \end{bmatrix}, \begin{bmatrix} 2 \\ 3 \end{bmatrix}$\\
+    处理3：$\begin{bmatrix} 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 5 \\ 1 \end{bmatrix}, \begin{bmatrix} 3 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ 3 \end{bmatrix}$\\
+    \begin{enumerate}[label=(\alph*)]
+        \item 计算 $S_{\mathrm{p}}.$ 
+        \item 用双样本方法以$\alpha=0.01$检验 $H_{0}:\mu_2-\mu_3=0$
+        \item 构造 $\mu_{2 i}=\mu_{3 i}, i=1 , 2$ 的 99\%联合置信区间
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+        处理2：样本均值向量 $\begin{bmatrix} 2 \\ 4 \end{bmatrix}$;
+        样本协方差矩阵 $\begin{bmatrix} 1 & -\frac{3}{2} \\ -\frac{3}{2} & 3 \end{bmatrix}$\\
+        处理3：样本均值向量 $\begin{bmatrix} 3 \\ 2 \end{bmatrix}$;
+        样本协方差矩阵 $\begin{bmatrix} 2 & -\frac{4}{3} \\ -\frac{4}{3} & \frac{4}{3} \end{bmatrix}$\\
+        $\therefore S_{\mathrm{pooled}}=\begin{bmatrix} 1.6 & -1.4 \\ -1.4 & 2 \end{bmatrix}$
+        \item
+        \[
+        \begin{gathered}
+        \begin{aligned}
+            T^2&=n(\bar{x}_1-\bar{x}_2)^\top S_{\mathrm{pooled}}^{-1}(\bar{x}_1-\bar{x}_2)\\
+            &=\begin{bmatrix} 2-3 & 4-2 \end{bmatrix} \left[ \left(\frac{1}{3}+\frac{1}{4}\right)\begin{bmatrix} 1.6 & -1.4 \\ -1.4 & 2 \end{bmatrix} \right]^{-1} \begin{bmatrix} 2-3 \\ 4-2 \end{bmatrix}=3.88\\
+        \end{aligned}\\
+        \frac{(n_1+n_2-2)p}{n_1+n_2-p-1} F_{p,n_1+n_2-p-1}(0.01)=\frac{(5)2}{3}F_{2,4}(0.01)=45\\
+        \therefore T^2=3.88<45 \therefore \text{接受}H_0
+        \end{gathered}
+        \]
+        \item 
+        99\%联合置信区间为
+        \[
+        \begin{aligned}
+            \mu_{21}-\mu_{31}&:(2-3)\pm\sqrt{45}\sqrt{\left(\frac{1}{3}+\frac{1}{4}\right)1.6}=-1\pm 6.5,\text{即}[-7.5, 5.5]\\
+            \mu_{22}-\mu_{32}&:(4-2)\pm\sqrt{45}\sqrt{\left(\frac{1}{3}+\frac{1}{4}\right)2}=2\pm 7.2,\text{即}[-5.2, 9.2]
+        \end{aligned}
+        \]
+    \end{enumerate}
+\end{solution}
+
+\begin{problem}
+    6.7.\\
+    利用例6.4中的电力需求数据的汇总统计数字计算 $T^{2}$ ,并检验假设 $H_0 : \;{\mu}_{1}-{\mu}_{2}={0}.$ (假定$\bf{\Sigma}_1=\bf{\Sigma}_2,\alpha=0.05$).
+    另外,确定对拒绝 $H_{0}$ 起关键作用的均值分量的线性组合。
+\end{problem}
+
+\begin{solution}
+    \[
+    \begin{gathered}
+        T^2= \begin{bmatrix} 74.4 & 201.6 \end{bmatrix} \left[ \left(\frac{1}{45}+\frac{1}{55}\right)\begin{bmatrix} 10963.7 & 21505.5 \\ 21505.5 & 63661.3 \end{bmatrix} \right]^{-1} \begin{bmatrix} 74.4 \\ 201.6 \end{bmatrix}=16.1\\
+        \frac{(n_1+n_2-2)p}{n_1+n_2-p-1} F_{p,n_1+n_2-p-1}(0.05)=6.26
+        \therefore T^2=16.1>6.26 \therefore \text{拒绝}H_0 \\
+        \text{线性组合：} \hat{\bf{a}} \propto\left( \frac{1} {n_{1}} {\bf{S}}_{1}+\frac{1} {n_{2}} {\bf{S}}_{2} \right)^{-1} ( {\bar{x}}_{1}-{\bar{x}}_{2} )= S_{pooled}^{-1} ( {\bar{x}}_{1}-{\bar{x}}_{2} )=\begin{bmatrix} 0.0017 \\ 0.0026 \end{bmatrix}
+    \end{gathered}
+    \]
+\end{solution}
+
+\begin{problem}
+    6.8.\\
+    对三种处理收集了两种响应的观测值,观测值向量 $\begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix}$ 为\\
+    处理1：$\begin{bmatrix} 6 \\ 7 \end{bmatrix}, \begin{bmatrix} 5 \\ 9 \end{bmatrix}, \begin{bmatrix} 8 \\ 6 \end{bmatrix}, \begin{bmatrix} 4 \\ 9 \end{bmatrix}, \begin{bmatrix} 7 \\ 9 \end{bmatrix}$\\
+    处理2：$\begin{bmatrix} 3 \\ 3 \end{bmatrix}, \begin{bmatrix} 1 \\ 6 \end{bmatrix}, \begin{bmatrix} 2 \\ 3 \end{bmatrix}$\\
+    处理3：$\begin{bmatrix} 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 5 \\ 1 \end{bmatrix}, \begin{bmatrix} 3 \\ 1 \end{bmatrix}, \begin{bmatrix} 2 \\ 3 \end{bmatrix}$\\
+    \begin{enumerate}[label=(\alph*)]
+        \item 像式(6-39)一样,把观测值分解为总平均、处理效应和残差三个部分.对每个变量构造相应的矩阵(见例6.9)
+        \item 利用(a)中的信息,构造单因子 MANOVA表
+        \item 计算威尔克斯 $\varLambda$ 统计量 $\varLambda^{*}$ ,并利用表6.3检验处理效应(取 $\alpha=0$ 再利用带巴特利特修正的 $\chi^{2}$ 近似重新检验上述假设[见式(6-43)],并比较这两个结论
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \[
+    \begin{gathered}
+        \text{对于变量1：}\\
+        \begin{bmatrix}
+            6 & 5 & 8 & 4 & 7 \\
+            3 & 1 & 2 &  &  \\
+            2 & 5 & 3 &2 &  
+        \end{bmatrix}_{\text{观测}}=
+        \begin{bmatrix}
+            4 & 4 & 4 & 4 & 4 \\
+            4 & 4 & 4 &  &  \\
+            4 & 4 & 4 & 4 &
+        \end{bmatrix}_{\text{均值}}+
+        \begin{bmatrix}
+            2 & 2 & 2 & 2 & 2 \\
+            -2 & -2 & -2 &  &  \\
+            -1 & -1 & -1 & -1 &
+        \end{bmatrix}_{\text{处理}}\\
+        +
+        \begin{bmatrix}
+            0 & -1 & 2 & -2 & 1 \\
+            1 & -1 & 0 &  &  \\
+            -1 & 2 & 0 & -1 &
+        \end{bmatrix}_{\text{残差}},
+        {SS}_{\text{观测}}=246, {SS}_{\text{均值}}=192, {SS}_{\text{处理}}=36, {SS}_{\text{残差}}=18\\
+        {SS}_\text{修正后总和}={SS}_{\text{观测}}-{SS}_{\text{均值}}=246-192=54\\
+        \text{对于变量2：}\\
+        \begin{bmatrix}
+            7 & 9 & 6 & 9 & 9 \\
+            3 & 6 & 3 &  &  \\
+            3 & 1 & 1 & 3 &
+        \end{bmatrix}_{\text{观测}}=
+        \begin{bmatrix}
+            5 & 5 & 5 & 5 & 5 \\
+            5 & 5 & 5 &  &  \\
+            5 & 5 & 5 & 5 &
+        \end{bmatrix}_{\text{均值}}+
+        \begin{bmatrix}
+            3 & 3 & 3 & 3 & 3 \\
+            -1 & -1 & -1 &  &  \\
+            -3 & -3 & -3 & -3 &  
+        \end{bmatrix}_{\text{处理}}\\
+        +
+        \begin{bmatrix}
+            -1 & 1 & -2 & 1 & 1 \\
+            -1 & 2 & -1 &  &  \\
+            1 & -1 & -1 & 1 &
+        \end{bmatrix}_{\text{残差}},
+        {SS}_{\text{观测}}=402, {SS}_{\text{均值}}=300, {SS}_{\text{处理}}=84, {SS}_{\text{残差}}=18\\
+        {SS}_\text{修正后总和}={SS}_{\text{观测}}-{SS}_{\text{均值}}=402-300=102\\
+    \end{gathered}
+    \]
+为完整地给出 MANOVA表,还必须考虑它们的交叉乘积，将两变量中的数据按行相乘，可得交叉乘积的贡献
+\[
+\begin{gathered}
+    {SCP}_\text{总}=6 \times 7 + 5 \times 9 + 8 \times 6 + 4 \times 9 + 7 \times 9 + 3 \times 3 + 1 \times 6 + 2 \times 3\\
+    + 2 \times 3 + 5 \times 1 + 3 \times 1 + 2 \times 3 = 275\\
+    {SCP}_\text{均值}=4 \times 5 + 4 \times 5 + \hdots + 4 \times 5  = 12 \times 4 \times 5=240\\
+    {SCP}_\text{处理}=5(2 \times 3) + 3(-2 \times -1) + 4(-1 \times -3) = 48\\
+    {SCP}_\text{残差}=0 \times -1 + -1 \times 1 + 2 \times -2 + \hdots -1\times 1=-13\\
+    {SCP}_\text{修正后}=\text{总交叉乘积}-\text{均值交叉乘积}=35
+\end{gathered}
+\]
+已知公式：
+\[
+    \begin{gathered}
+    \text{总体均值向量数目/组数}g=3, \text{矩阵元素个数}\sum_{l=1}^{g}n_l =5+3+4=12\\
+    B=\begin{bmatrix} {SS}_{\text{变量1处理}} & {SCP}_\text{处理} \\ {SCP}_\text{处理} & {SS}_{\text{变量2处理}} \end{bmatrix},
+    W=\begin{bmatrix} {SS}_{\text{变量1残差}} & {SCP}_\text{残差} \\ {SCP}_\text{残差} & {SS}_{\text{变量2残差}} \end{bmatrix}
+    \end{gathered}
+\]
+
+MANOVA表如下:
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{ccc}
+    \toprule
+    \rowcolor[HTML]{C0C0C0}
+    变化来源  & 平方和与交叉乘积和矩阵SSP & 自由度d.f.   \\
+    \midrule
+    处理    & \(B=\begin{bmatrix} 36 & 48 \\ 48 & 84 \end{bmatrix} \)   & \(g-1=2\)    \\
+    残差    & \(W=\begin{bmatrix} 18 & -13 \\ -13 & 18 \end{bmatrix} \)             & \(\sum_{l=1}^{g}n_l-g=9\)\\
+    \midrule
+    修正后总和 & \(B+W=\begin{bmatrix} 54 & 35 \\ 35 & 102 \end{bmatrix} \) & \(\sum_{l=1}^{g} n_l -1=2+9=11\)   \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+\[
+    \begin{gathered}
+        \Lambda^\ast=\frac{|W|}{|B+W|}=\frac{18\times 18-(-13)\times(-13)}{54 \times 102 - 35 \times 35}=\frac{155}{4283}=0.0362
+        \text{且} p=2,g=3\geqslant 2\\
+        \therefore \text{查表6.3知威尔克斯分布} \left( \frac{ \sum n_{l} - g - 1 } {g - 1} \right) \left( \frac{ 1 - \sqrt{\Lambda^{*} } } { \sqrt{\Lambda^{*} } } \right)  \sim F_{2 ( g-1 ),  2 (  \sum_{n_l}-g-1 )}\\
+        \because F_{4,16}(0.01)=4.77 < 17.02=\left(\frac{8}{2}\right)\left(\frac{1-\sqrt{0.0362}}{\sqrt{0.0362}}\right)\\
+        \therefore \text{拒绝}H_0\text{，处理间的差异在}\alpha=0.01\text{的显著性水平下存在。}\\
+    \end{gathered}
+\]
+
+\[
+    \begin{gathered}
+        \text{此外，公式(6-43)利用带巴特利特修正的}\chi^2\text{近似检验}\\
+        - \left( n-1-\frac{ p+g }{2} \right) \ln \Lambda^\ast=
+        - \left( 12-1-\frac{ 2+3 }{2} \right) \ln(0.0362)=28.209\\
+        \text{公式(6-44)中}\chi^2_{p(g-1)}(\alpha)=\chi^2_{4}(0.01)=13.28<28.209\\
+        \therefore \text{拒绝}H_0\text{，处理间的差异在}\alpha=0.01\text{的显著性水平下存在。}
+    \end{gathered}
+\]
+\end{solution}
+
+
+
+\begin{problem}
+    6.13.\\
+    无重复的双因子MANOVA：\\
+    考虑以下双因子表给出的(注意:对因子水平的每一种组合中仅有一个观测值向量)响应$x_1,x_2$的观测值:
+
+
+    \begin{tabular}{|cc|cccc|}
+        \hline
+        \multicolumn{2}{|c|}{\multirow{2}{*}{}}          & \multicolumn{4}{c|}{因子2}                                                                   \\ \cline{3-6} 
+        \multicolumn{2}{|c|}{}                           & \multicolumn{1}{c|}{水平1}  & \multicolumn{1}{c|}{水平2}   & \multicolumn{1}{c|}{水平3}  & 水平4   \\ \hline
+        \multicolumn{1}{|c|}{\multirow{3}{*}{因子1}} & 水平1 & \multicolumn{1}{c|}{$\begin{bmatrix} 6 \\ 8 \end{bmatrix}$}  & \multicolumn{1}{c|}{$\begin{bmatrix} 4 \\ 6 \end{bmatrix}$}   & \multicolumn{1}{c|}{$\begin{bmatrix} 8 \\ 12 \end{bmatrix}$} & $\begin{bmatrix} 2 \\ 6 \end{bmatrix}$   \\ \cline{2-6} 
+        \multicolumn{1}{|c|}{}                     & 水平2 & \multicolumn{1}{c|}{$\begin{bmatrix} 3 \\ 8 \end{bmatrix}$}  & \multicolumn{1}{c|}{$\begin{bmatrix} -3 \\ 2 \end{bmatrix}$}  & \multicolumn{1}{c|}{$\begin{bmatrix} 4 \\ 3 \end{bmatrix}$}  & $\begin{bmatrix} -4 \\ 3 \end{bmatrix}$  \\ \cline{2-6} 
+        \multicolumn{1}{|c|}{}                     & 水平3 & \multicolumn{1}{c|}{$\begin{bmatrix} -3 \\ 2 \end{bmatrix}$} & \multicolumn{1}{c|}{$\begin{bmatrix} -4 \\ -5 \end{bmatrix}$} & \multicolumn{1}{c|}{$\begin{bmatrix} 3 \\ -3 \end{bmatrix}$} & $\begin{bmatrix} -4 \\ -6 \end{bmatrix}$ \\ \hline
+        \end{tabular}\\
+    
+        无重复的双因子 MANOVA模型为
+        \[
+            \bm{X}_{lk}=\bm{\mu}+\bm{\tau}_{l}+\bm{\beta}_{k}+e_{lk}; \quad\sum_{l=1}^{g} \bm{\tau}_{l}=\, \sum_{k=1}^{b} \bm{\beta}_{k}=0
+        \]
+        其中 $\bm{e}_{i k}$ 为独立的 $N_{p} ( \bm{0}, \bm{\Sigma})$ 随机向量
+        \begin{enumerate}[label=(\alph*)]
+            \item 与例6.9类似,将两变量中的每一个变量的观测值分解为
+            \[
+            x_{lk}=\bar{x}+( \bar{x}_{l\cdot}-\bar{x} )+( \bar{x}_{k\cdot}-\bar{x} )+( x_{lk}-\bar{x}_{l\cdot}+\bar{x}_{\cdot k}+\bar{x} )
+            \]
+            对每一个响应,这个分解会产生几个 $3 \times4$ 矩阵，这里$\bar{x}$为总平均,$\bar{x}_{l\cdot}$为因子1第 $l$ 个水平下的平均,而$\bar{x}_{\cdot k}$为因子 2第 $k$ 个水平下的平均.
+            \item 矩阵的每一行看成一个串成的长向量，并计算平方和与交叉乘积和矩阵
+            \item 构造 MANOVA表
+            \item 检验因子1和因子2的主效应
+        \end{enumerate}
+\end{problem}
+
+
+% \[
+%     \begin{gathered}
+    
+%     \end{gathered}
+% \]
+
+\begin{solution}
+     \[
+     \begin{gathered}
+        \text{对于第一个变量：}\\
+        \begin{bmatrix}
+            6 & 4 & 8 & 2 \\
+            3 & -3 & 4 & -4 \\
+            3 & -3 & 4 & -4 
+        \end{bmatrix}_{\text{观测}}=
+        \begin{bmatrix}
+            1 & 1 & 1 & 1 \\
+            1 & 1 & 1 & 1 \\
+            1 & 1 & 1 & 1 
+        \end{bmatrix}_{\text{均值}}+
+        \begin{bmatrix}
+            4 & 4 & 4 & 4 \\
+            -1&-1&-1&-1 \\
+            -3 & -3 & -3 & -3 
+        \end{bmatrix}_{\text{因子1效果}}\\
+        +\begin{bmatrix}
+            1 & -2 & 4 & -3 \\
+            1 & -2 & 4 & -3 \\
+            1 & -2 & 4 & -3 
+        \end{bmatrix}_{\text{因子2效果}}+
+        \begin{bmatrix}
+            0 & 1 & -1 & 0 \\
+            2 & -1 & 0 & -1 \\
+            -2 & 0 & 1 & 1
+        \end{bmatrix}_{\text{残差}}\\
+        {SS}_{\text{总}}=220, 
+        {SS}_{\text{均值}}=12, 
+        {SS}_{\text{因子1}}=104, 
+        {SS}_{\text{因子2}}=90, 
+        {SS}_{\text{残差}}=14\\
+        \text{对于第二个变量：}\\
+        \begin{bmatrix}
+            8 & 6 & 12 & 6 \\
+            8 & 2 & 3 & 3 \\
+            2 & -5 & -3 & -6 
+        \end{bmatrix}_{\text{观测}}=
+        \begin{bmatrix}
+           3 & 3 & 3 & 3 \\
+              3 & 3 & 3 & 3 \\
+                3 & 3 & 3 & 3
+        \end{bmatrix}_{\text{均值}}+
+        \begin{bmatrix}
+            5 & 5 & 5 & 5 \\
+            1 & 1 & 1 & 1 \\
+            -6 & -6 & -6 & -6
+        \end{bmatrix}_{\text{因子1效果}}\\
+        +\begin{bmatrix}
+            3 & -2 & 1 & -2 \\
+            3 & -2 & 1 & -2 \\
+            3 & -2 & 1 & -2
+        \end{bmatrix}_{\text{因子2效果}}+
+        \begin{bmatrix}
+           -3 & 0 & 3 & 0 \\
+            1 & 0 & -2 & 1 \\
+            2 & 0 & -1 & -1
+        \end{bmatrix}_{\text{残差}}\\
+        {SS}_{\text{总}}=440, 
+        {SS}_{\text{均值}}=108, 
+        {SS}_{\text{因子1}}=248, 
+        {SS}_{\text{因子2}}=54, 
+        {SS}_{\text{残差}}=30\\
+        \text{交叉相乘之和：}\\
+        {SCP}_\text{总}=6 \times 8 + 4 \times 6 + \hdots+ (-4) \times (-6) = 227\\
+        {SCP}_\text{均值}=1 \times 3 + 1 \times 3 + \hdots + 1 \times 3 =12 \times 1 \times 3= 36\\
+        {SCP}_\text{因子1处理}=4 \times 5 + 4 \times 5 + \hdots + (-3) \times (-6) = 148\\
+        {SCP}_\text{因子2处理}=1 \times 3 + (-2) \times (-2) + \hdots + (-3) \times (-2) = 51\\
+        {SCP}_\text{残差}=0 \times (-3) + 1 \times 0 + \hdots + 1 \times (-1) = -8\\
+        {SCP}_\text{修正后}=227-36=191,\text{验证：}227=36+148+51-8\\
+    \end{gathered}
+\]
+已知公式：
+\[
+    \begin{gathered}
+    \text{总体均值向量数目/组数}g=3, \text{列数}b=4,\\
+    B_1=\begin{bmatrix} {SS}_{\text{变量1因子1处理}} & {SCP}_\text{因子1处理} \\ {SCP}_\text{因子1处理} & {SS}_{\text{变量2因子1处理}} \end{bmatrix},
+    W=\begin{bmatrix} {SS}_{\text{变量1残差}} & {SCP}_\text{残差} \\ {SCP}_\text{残差} & {SS}_{\text{变量2残差}} \end{bmatrix}
+    \end{gathered}
+\]
+MANOVA表如下:
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{ccc}
+    \toprule
+    \rowcolor[HTML]{C0C0C0}
+    变化来源  & 平方和与交叉乘积和矩阵SSP & 自由度d.f.   \\
+    \midrule
+    因子1处理    & \(B_1=\begin{bmatrix} 104 & 148 \\ 148 & 248 \end{bmatrix} \)   & \(g-1=2\)    \\
+    因子2处理    & \(B_2=\begin{bmatrix} 90 & 51 \\ 51 & 54 \end{bmatrix} \)   & \(b-1=3\)    \\
+    残差    & \(W=\begin{bmatrix} 14 & -8 \\ -8 & 30 \end{bmatrix} \)             & \((g-1)(b-1)=6\)\\
+    \midrule
+    修正后总和 & \(B_1+B_2+W=\begin{bmatrix} 208 & 191 \\ 191 & 332 \end{bmatrix} \) & \(gb-1=11\)   \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+
+验证因子1和因子2的主效应：
+
+\[
+    \begin{aligned}
+        &- \left[ {(g-1)(b-1)-\left( {\frac{p+1-(b-1)}{2}} \right) } \right] \ln \Lambda^\ast
+        =-\left[ { 6- \left( \frac{2+1-2}{2} \right) }\right] \ln{\frac{|W|}{|B_2+W|}}\\
+        &=-6\ln{\frac{356}{6887}}=17.77 >\chi^2_{4}(0.05)=9.49\\ 
+        &\therefore \text{结论：在}\alpha=0.05\text{的显著性水平下拒绝原假设}H_0:\tau_1=\tau_2=\tau_3=0
+    \end{aligned}
+\]
+
+\[
+    \begin{aligned}
+        &- \left[ {(g-1)(b-1)-\left( {\frac{p+1-(g-1)}{2}} \right) } \right] \ln \Lambda^\ast
+        =-\left[ { 6- \left( \frac{2+1-(4-1)}{2} \right) }\right] \ln{\frac{|W|}{|B_1+W|}}\\
+        &=-5.5\ln{\frac{356}{13204}}=19.87> \chi^2_{6}(0.05)=12.59\\
+        &\therefore \text{结论：在}\alpha=0.05\text{的显著性水平下拒绝原假设}H_0:\beta_1=\beta_2=\beta_3=\beta_4=0
+    \end{aligned}
+\]
+
+\end{solution}
+
+% \begin{problem}
+%     5.1
+%     \begin{enumerate}[label=(\alph*)]
+%         \item 使用给定的数据计算检验统计量 $T^{2}$ 以检验原假设 $H_{0} \colon \mu^{\prime}= [7,11]$，
+%         $$
+%         \mathbf{X}= \begin{bmatrix} {2} & {12} \\ {8} & {9} \\ {6} & {9} \\ {8} & {10} \\ \end{bmatrix}
+%         $$
+%         \item 描述（a）部分中 $T^{2}$ 统计量的分布情况。
+%         \item 结合（a）和（b）的结果，在 $\alpha=0.05$ 的显著性水平下对原假设 $H_{0}$ 进行检验。你会得出什么结论？
+%     \end{enumerate}
+% \end{problem}
+
+
+% \begin{solution}
+%     \begin{enumerate}[label=(\alph*)]
+%         \item 
+%         \begin{gather*}
+%             \text{变量数}p=2,\text{样本大小}n=4\\
+%             \bar{x}=\begin{bmatrix}
+%                 \frac{2+8+6+8}{n}\\
+%                 \frac{12+9+9+10}{n}
+%             \end{bmatrix}
+%             =\begin{bmatrix}
+%                 6\\
+%                 10
+%             \end{bmatrix},\\
+%             S_{ij} = \frac{1}{n-1} \sum_{k=1}^{n} (x_{ki} - \bar{x}_i)(x_{kj} - \bar{x}_j) ,
+%             \mathbf{S}=\begin{bmatrix}
+%                 8 & -\frac{10}{3}\\
+%                 -\frac{10}{3} & 2
+%             \end{bmatrix},\\
+%             T^{2}=n(\bar{x} - \mu^\prime)^\top \mathbf{S}^{-1} (\bar{x} - \mu^\prime)=\frac{150}{11}=13.64
+%         \end{gather*}
+%         \item 
+%         \begin{gather*}
+%             \because T^{2} \sim \frac{( n-1 ) p} {( n-p )} F_{p, n-p},\\
+%             \therefore T^{2} \sim 3F_{2,2}
+%         \end{gather*}
+%         \item 
+%         \begin{gather*}
+%             H_{0} \colon \mu^{\prime}= [7,11]\\
+%             \because \alpha=0.05 \therefore F_{2,2}(0.05)=19\\
+%             \because T^{2}=13.64<3F_{2,2}(0.05)=57\\
+%             \therefore \alpha=0.05\text{时接受原假设} H_{0}
+%         \end{gather*}
+
+%       \end{enumerate}
+% \end{solution}
+
+
+
+% \begin{problem}
+% 5.5.
+% 样本均值向量：
+% $$
+% \mathbf{\bar{x}} =
+% \begin{bmatrix}
+% 0.564 \\
+% 0.603
+% \end{bmatrix}
+% $$
+
+% 样本协方差矩阵：
+% $$
+% \mathbf{S} =
+% \begin{bmatrix}
+% 0.0144 & 0.0117 \\
+% 0.0117 & 0.0146
+% \end{bmatrix}
+% $$
+
+% 样本协方差矩阵的逆矩阵：
+% $$
+% \mathbf{S}^{-1} =
+% \begin{bmatrix}
+% 203.018 & -163.391 \\
+% -163.391 & 200.228
+% \end{bmatrix}
+% $$
+% 在0.05的显著性水平上，对原假设 $H_{0}$ 进行检验，其中原假设为：$H_{0} \colon\boldsymbol{\mu}^{\prime} = [0.55,0.60]$。检验的结果是否与图5.1中所示的 $\boldsymbol{\mu}$ 参数95\%的置信椭圆相一致？请对此进行解释。
+% \end{problem}
+
+% \begin{solution}
+%     \begin{gather*}
+%         H_{0} \colon\boldsymbol{\mu}^{\prime} = [0.55,0.60],T^{2}=n(\bar{x} - \mu^\prime)^\top \mathbf{S}^{-1} (\bar{x} - \mu^\prime)=1.17\\
+%         \alpha=0.05 \therefore F_{2,40}(0.05)=3.23\\
+%         \because T^{2}=1.17<\frac{2(40+1)}{40},F_{2,40}(0.05)=2.05\times3.23=6.62\\   
+%     \end{gather*}
+%     在0.05的显著性水平上，我们不拒绝原假设$H_0$。这一结果与图中所示的95\%置信椭圆一致，因为均值向量$\boldsymbol{\mu}^\prime=[0.55,0.60]$位于该椭圆内部。
+    
+%     \begin{center}
+%         \begin{tikzpicture}
+%             \begin{axis}[
+%                 xmin=0.4, xmax=0.7,
+%                 ymin=0.4, ymax=0.8,
+%                 axis lines=center,
+%                 xlabel=$x_1$,
+%                 ylabel=$x_2$,
+%                 xtick={0.4,0.5,...,0.7},
+%                 ytick={0.4,0.5,...,0.8},
+%                 grid=major,
+%             ]
+%             % Draw the ellipse
+%             \draw[black, fill=gray!30, rotate around={-135.2448477965646:(0.564, 0.603)}] (0.564, 0.603) ellipse (3.2373092124554926cm and 1.0582197611795cm); 
+%             % 半长轴长度（major axis）: 0.052910988058975*20
+%             % 半短轴长度（minor axis）: 0.16186546062277463*20
+%             % 旋转角度（degrees）: -135.2448477965646
+%             % 中心坐标（center）: [[0.564] [0.603]]
+
+%             % Draw the center of the ellipse
+%             \fill[black] (0.564, 0.603) circle (2pt);
+%             % Draw the mu point
+%             \fill[red] (0.55, 0.60) circle (2pt);
+%             % Draw the dashed lines
+%             \draw[dashed, red] (0.55, 0.60) -- (0.55, 0);
+%             \draw[dashed, red] (0.55, 0.60) -- (0, 0.60);
+%             \end{axis}
+%         \end{tikzpicture}       
+%     \end{center}
+
+% \end{solution}
+
+% \begin{problem}
+%     绘制散点图，展示当显著性水平 $\alpha=0.05$ 时，对于不同的样本量 $n$（从 2 到 120，步长为 1）和不同自由度 $p$（从 1 到 60，步长为 1）条件下，变量
+%     $
+%     \frac{( n-1 ) p} {n-p} F_{p, n-p} ( \alpha)
+%     $
+%     的观测值分布情况。
+% \end{problem}
+
+% \begin{solution}
+%     \begin{figure}[h]
+%         \centering
+%         \includegraphics[width=\textwidth]{Figure_1.png}
+%         \caption{观测值分布情况}
+%     \end{figure}
+% \end{solution}
+
+
+\end{document}
