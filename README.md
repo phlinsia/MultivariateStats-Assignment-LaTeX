@@ -9,5 +9,5 @@ LaTeX assignments of the Applied Multivariate Statistical Analysis (Johnson, Wic
 - Assignment(1)/作业1:2.18, 2.20, 2.22, 2.25
 - Assignment(2)/作业2:4.2, 4.3, 4.16, 4.18
 - Assignment(3)/作业3:5.1, 5.5, a scatter plot of $(n-1)\frac{p}{n-p}F_{p,n-p}(\alpha)$
-- Assignment(4)-6.6,6.7,6.8,6.13
-- midterm_test-2.20,4.8,2.32,4.18,5.1,4.11,Result 5.1 and Proof
+- Assignment(4)/作业4:6.6,6.7,6.8,6.13
+- midterm_test/期中考试:2.20,4.8,2.32,4.18,5.1,4.11,Result 5.1 and Proof(Textbook/教材证明题)
