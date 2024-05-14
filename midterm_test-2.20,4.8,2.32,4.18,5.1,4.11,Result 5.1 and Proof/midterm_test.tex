@@ -15,6 +15,7 @@
 \begin{document}
 
 \maketitle
+\newpage
 
 \begin{problem}
     2.20\\
@@ -59,16 +60,16 @@
                     x_2
                 \end{bmatrix}\\
             \Rightarrow (x_1,x_2)=(1,1.618)\\
-            \therefore e_1= (0.5257,0.8507)^T\\
-            \text{同理:}\lambda_2=1.382,e_2= (0.8507,-0.5257)^T\\
+            \therefore e_1= (0.5257,0.8507)^\top\\
+            \text{同理:}\lambda_2=1.382,e_2= (0.8507,-0.5257)^\top\\
             A^\frac{1}{2}
-            =\sqrt{\lambda_1}e_1 e_1^T+\sqrt{\lambda_2}e_2 e_2^T
+            =\sqrt{\lambda_1}e_1 e_1^\top+\sqrt{\lambda_2}e_2 e_2^\top
             =\begin{bmatrix}
                     1.376 & 0.325\\
                     0.325 & 1.701
                 \end{bmatrix}\\
             A^{-\frac{1}{2}}
-            =\frac{1}{\sqrt{\lambda_1}}e_1 e_1^T+\frac{1}{\sqrt{\lambda_2}}e_2 e_2^T
+            =\frac{1}{\sqrt{\lambda_1}}e_1 e_1^\top+\frac{1}{\sqrt{\lambda_2}}e_2 e_2^\top
             =\begin{bmatrix}
                     0.760 & -0.145\\
                     -0.145 & 0.615
@@ -84,9 +85,10 @@
     \]
 \end{solution}
 
+\newpage
 \begin{problem}
     4.8.\\
-    已知$X_1~N(0,1)$
+    已知$X_1\sim N(0,1)$
     \begin{equation*}
     X_2=
         \begin{cases}
@@ -95,23 +97,35 @@
         \end{cases}
     \end{equation*}
     \begin{enumerate}[label=(\alph*)]
-        \item 证明$X_1~N(0,1)$
+        \item 证明$X_1\sim N(0,1)$
         \item 证明$X_1,X_2$不符合二元正态分布
     \end{enumerate}
 \end{problem}
 
-\begin{note}
-
-\end{note}
-
 \begin{solution}
-    
+    \begin{enumerate}[label=(\alph*)]
+        \item
+        \[
+        \begin{gathered}
+            -1\leq x_1 \leq 1 \Rightarrow x_2=-x_1 \sim N(0,1)\\
+            x_1>1 \text{或} x_1<-1 \Rightarrow x_2=x_1 \sim N(0,1)\\
+            \therefore X_2 \sim N(0,1)
+        \end{gathered}
+        \]
+        \item 
+        \[
+            \begin{gathered}
+                \text{对于二元正态分布，}x_1,x_2 \text{的联合分布应该是二元正态分布}\\
+                \text{而}x_1,x_2 \text{的联合分布不是二元正态分布，因为}x_1,x_2 \text{不是线性相关}
+            \end{gathered}
+        \]
+    \end{enumerate}
 \end{solution}
 
 \newpage
 \begin{problem}
     2.32\\
-    给定了随机向量$\mathbf{X}^T=(X_1,X_2,X_3,X_4,X_5)$，均值向量$\mu^T=(2,4,-1,3,0)$，
+    给定了随机向量$\mathbf{X}^\top=(X_1,X_2,X_3,X_4,X_5)$，均值向量$\mu^\top=(2,4,-1,3,0)$，
     以及方差-协方差矩阵$\bm{\Sigma_{X}}$
     \[\bm{\Sigma_{X}}=
             \begin{bmatrix}
@@ -198,7 +212,7 @@
         \] 
         \item 
         \[
-            Cov(\mathbf{A}\mathbf{X}^{(1)})=\mathbf{A}\bm{\Sigma_{11}}\mathbf{A^T}=
+            Cov(\mathbf{A}\mathbf{X}^{(1)})=\mathbf{A}\bm{\Sigma_{11}}\mathbf{A^\top}=
             \begin{bmatrix}
                 1 & -1\\
                 1 & 1
@@ -254,7 +268,7 @@
         \] 
         \item 
         \[
-            Cov(\mathbf{B}\mathbf{X}^{(2)})=\mathbf{B}\bm{\Sigma_{22}}\mathbf{B^T}=
+            Cov(\mathbf{B}\mathbf{X}^{(2)})=\mathbf{B}\bm{\Sigma_{22}}\mathbf{B^\top}=
             \begin{bmatrix}
                 1 & 1 & 1\\
                 1 & 1 & -2
@@ -284,7 +298,7 @@
         \]
         \item 
         \[
-            Cov(\mathbf{A}\mathbf{X}^{(1)},\mathbf{B}\mathbf{X}^{(2)})=\mathbf{A}\bm{\Sigma_{12}}\mathbf{B^T}\\
+            Cov(\mathbf{A}\mathbf{X}^{(1)},\mathbf{B}\mathbf{X}^{(2)})=\mathbf{A}\bm{\Sigma_{12}}\mathbf{B^\top}\\
             =\begin{bmatrix}
                 1 & 1 \\
                 1 & 1\\
@@ -306,7 +320,7 @@
         \]
     \end{enumerate}
 \end{solution}
-
+\newpage
 \begin{problem}
     4.18.\\
     试根据来自二维正态总体的随机样本
@@ -342,7 +356,7 @@
     \end{equation*}
 \end{solution}
 
-
+\newpage
 \begin{problem}
     5.1
     \begin{enumerate}[label=(\alph*)]
@@ -408,16 +422,93 @@
     \end{equation*}
 \end{problem}
 
-\begin{note}
-    将A分块并证明：
-\end{note}
-
+\begin{solution}
+    \[
+        \begin{gathered}
+            \begin{bmatrix}
+                I & 0\\
+                -A_{21}A_{11}^{-1} & I
+            \end{bmatrix}
+            \begin{bmatrix}
+                A_{11} & A_{12}\\
+                A_{21} & A_{22}
+            \end{bmatrix}=
+            \begin{bmatrix}
+                A_{11} & A_{12}\\
+                0 & A_{22}-A_{21}A_{11}^{-1}A_{12}
+            \end{bmatrix}\\
+            \text{两边取行列式} |A|= |A_{11}||A_{22}-A_{21}A_{11}^{-1}A_{12}|\\
+            \begin{bmatrix}
+                I & -A_{12}A_{22}^{-1}\\
+                0 & I
+            \end{bmatrix}
+            \begin{bmatrix}
+                A_{11} & A_{12}\\
+                A_{21} & A_{22}
+            \end{bmatrix}=
+            \begin{bmatrix}
+                A_{11}-A_{12}A_{22}^{-1}A_{21} & 0\\
+                A_{21} & A_{22}
+            \end{bmatrix}\\
+            \text{两边取行列式} |A|= |A_{22}||A_{11}-A_{12}A_{22}^{-1}A_{21}|\\
+        \end{gathered}
+    \]
+\end{solution}
+\newpage
 \begin{problem}
-    
-    
+    设样本 \(X_1,X_2,\cdots,X_n\) 是从正态总体 \(N_p(\mu,\Sigma)\)抽取的样本,对于一切可能的\(\mu,\Sigma\),
+    多元正态似然函数的最大值是:
+    \[
+        \begin{aligned}
+            \max_{\mu,\Sigma} L(\mu,\Sigma) &= \frac{1}{(2\pi)^{\frac{np}{2}}\left| \Sigma_\mu \right|} e^{-\frac{np}{2}}\\
+            &=\frac{1}{n}\sum_{i=1}^{n} (x_j-\bar{x}) (x_j-\bar{x})^\top
+        \end{aligned}
+    \]
+    再假设\(H_0:\mu=\mu_0\) 下正态似然函数的最大值为:
+    \[
+        \begin{gathered}
+            \max_{\Sigma}  L(\mu_0,\Sigma) = \frac{1}{(2\pi)^{\frac{np}{2}}\left| \Sigma_0 \right|} e^{-\frac{np}{2}} \\
+            \Sigma_0=\frac{1}{n} \sum_{i=1}^{n} (x_j-\mu_0) (x_j-\mu_0)^\top\\
+            \text{验证:\quad} \Lambda^{\frac{2}{n}} =  \frac{|\Sigma_\mu|}{|\Sigma_0|}  =  \left( 1+\frac{T^{2}}{n-1} \right)^{-1}  
+        \end{gathered}
+    \]
 \end{problem}
 
-
+\begin{solution}
+    \[
+        \begin{gathered}
+            \text{令} (p+1)\times(p+1) \text{矩阵A为}\\
+            \begin{aligned}
+                A&=\begin{bmatrix}
+                    \sum_{j=1}^{n}(x_j-\bar{x})(x_j-\bar{x})^\top & \sqrt{n}(\bar{x}-\mu_0)\\
+                    \sqrt{n}(\bar{x}-\mu_0)^\top & -1
+                \end{bmatrix}\\
+                &=\left|{\sum_{i=1}^{n}(x_i-\bar{x})(x_i-\bar{x})^\top}\right| \left|{-1-\sqrt{n}(\bar{x}-\mu_0)^\top A_{11}^{-1} \sqrt{n}(\bar{x}-\mu_0)} \right|\\
+                &=(-1)\left|\sum_{i=1}^{n}(x_i-\bar{x})(x_i-\bar{x})^\top+\sqrt{n}(\bar{x}-\mu_0)\sqrt{n}(\bar{x}-\mu_0)\right|\\
+            \end{aligned}\\
+            \boxed{
+                \begin{aligned}
+                    \sum_{i=1}^{n}(x_i-\mu_0)(x_i-\mu_0)^\top
+                    &=\sum_{i=1}^{n}(x_i-\bar{x}+\bar{x}-\mu_0)(x_i-\bar{x}+\bar{x}-\mu_0)^\top\\
+                    &=\sum_{i=1}^{n}(x_i-\bar{x})(x_i-\bar{x})^\top+n(\bar{x}-\mu_0)(\bar{x}-\mu_0)^\top\\
+                \end{aligned}
+                }\\
+            \text{两边取行列式并乘-1：}\\
+            (-1) \left| \sum_{i=1}^{n}(x_i-\mu_0)(x_i-\mu_0)^\top \right|= (-1) \left| \sum_{i=1}^{n}(x_i-\bar{x})(x_i-\bar{x})^\top+n(\bar{x}-\mu_0)(\bar{x}-\mu_0)^\top \right|\\
+            \Rightarrow (-1) \left| \sum_{i=1}^{n}(x_i-\mu_0)(x_i-\mu_0)^\top \right| = \left| \sum_{i=1}^{n}(x_i-\bar{x})(x_i-\bar{x})^\top \right| \left| {-1-n(\bar{x}-\mu_0)^\top A_{11}^{-1}(\bar{x}-\mu_0)} \right|\\
+            \Rightarrow (-1) \left| n\Sigma_0 \right| = \left| n\Sigma \right| \left| -1-n(\bar{x}-\mu_0)^\top \frac{S^{-1}}{n-1} (\bar{x}-\mu_0)  \right|\\
+            \boxed{
+                \begin{gathered}
+                \because S_{p\times p} = \frac{1}{n-1} \sum_{j=1}^{n}(x_j-\bar{x})(x_j-\bar{x})^\top\\
+                \therefore S^{-1} = \frac{n-1}{\sum_{j=1}^{n}(x_j-\bar{x})(x_j-\bar{x})^\top}\\
+                \therefore \left[ {\sum_{j=1}^{n}(x_j-\bar{x})(x_j-\bar{x})^\top} \right]^{-1} = \frac{S^{-1}}{n-1}\\
+                \end{gathered}
+            }\\
+            \Rightarrow \left| n\Sigma_0 \right| = \left| n\Sigma \right| \left| 1+\frac{T^{2}}{n-1} \right|\\
+            \Rightarrow \frac{\Sigma_0}{\Sigma}=1+\frac{T^{2}}{n-1}
+        \end{gathered}
+    \]
+\end{solution}
 
 
 
