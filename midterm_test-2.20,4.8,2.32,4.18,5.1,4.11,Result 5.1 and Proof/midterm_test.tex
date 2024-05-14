@@ -2,7 +2,7 @@
 \usepackage{amsmath, amsthm, amssymb, bm, color, framed, graphicx, hyperref, mathrsfs}
 \usepackage[inline]{enumitem}
 
-\title{\textbf{多元统计分析期中考试}}
+\title{\textbf{多元统计分析期中考试试题全解}}
 \author{Phlinsia}
 \date{\today}
 \linespread{1.5}
@@ -97,7 +97,7 @@
         \end{cases}
     \end{equation*}
     \begin{enumerate}[label=(\alph*)]
-        \item 证明$X_1\sim N(0,1)$
+        \item 证明$X_2\sim N(0,1)$
         \item 证明$X_1,X_2$不符合二元正态分布
     \end{enumerate}
 \end{problem}
@@ -106,19 +106,15 @@
     \begin{enumerate}[label=(\alph*)]
         \item
         \[
-        \begin{gathered}
-            -1\leq x_1 \leq 1 \Rightarrow x_2=-x_1 \sim N(0,1)\\
-            x_1>1 \text{或} x_1<-1 \Rightarrow x_2=x_1 \sim N(0,1)\\
-            \therefore X_2 \sim N(0,1)
-        \end{gathered}
+            -1\leq x_1 \leq 1 \text{时}\Rightarrow x_2=-x_1 \sim N(0,1)
         \]
-        \item 
+            这个变换反映在密度函数上就是关于y轴的对称变换，不会改变分布的形状和参数，因为正态分布完全对称.
         \[
-            \begin{gathered}
-                \text{对于二元正态分布，}x_1,x_2 \text{的联合分布应该是二元正态分布}\\
-                \text{而}x_1,x_2 \text{的联合分布不是二元正态分布，因为}x_1,x_2 \text{不是线性相关}
-            \end{gathered}
+            x_1>1 \text{或} x_1<-1  \text{时} \Rightarrow x_2=x_1 \sim N(0,1)\\
         \]
+        \(\therefore X_2\)通过简单的线性变换（包括恒等变换和翻转）保持了原始分布的性质\quad \( \therefore X_2 \sim N(0,1)\)
+        \item 
+        如果 $X_1$ 和 $X_2$ 符合二元正态分布，那么它们的相关系数 $\rho$ 应该在整个定义域内保持不变。但根据 $X_2$ 的定义，$\rho$ 实际上在 $X_1 \in [-1, 1]$ 时为 $-1$，在 $X_1$ 的其他取值时为 $1$，这违反了二元正态分布的定义，因为相关系数必须是固定值。
     \end{enumerate}
 \end{solution}
 
@@ -505,7 +501,7 @@
                 \end{gathered}
             }\\
             \Rightarrow \left| n\Sigma_0 \right| = \left| n\Sigma \right| \left| 1+\frac{T^{2}}{n-1} \right|\\
-            \Rightarrow \frac{\Sigma_0}{\Sigma}=1+\frac{T^{2}}{n-1}
+            \Rightarrow  \frac{|\Sigma_0|}{|\Sigma|}=1+\frac{T^{2}}{n-1}
         \end{gathered}
     \]
 \end{solution}
