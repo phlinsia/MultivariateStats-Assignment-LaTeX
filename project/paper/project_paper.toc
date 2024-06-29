@@ -1,0 +1,19 @@
+\contentsline {section}{\numberline {1}EM算法：观察值缺失时均值向量的推断}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}推导过程}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}定义问题}{2}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}计算\(T_1\)和\(T_2\)}{2}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}定义缺失数据\(x_j^{(1)}\)}{2}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}分块矩阵行列式计算性质}{2}{subsubsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.5}分块矩阵求逆\(\Sigma ^{-1}\)}{3}{subsubsection.1.1.5}%
+\contentsline {subsubsection}{\numberline {1.1.6}\(f \left (x_j^{(1)}|x_j^{(2)} \right )\)条件概率密度函数推导}{3}{subsubsection.1.1.6}%
+\contentsline {subsubsection}{\numberline {1.1.7}修正后的极大似然估计}{4}{subsubsection.1.1.7}%
+\contentsline {subsection}{\numberline {1.2}编程实现}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}测试结果}{7}{subsection.1.3}%
+\contentsline {section}{\numberline {2}验证Bartlett关于多元方差分析的抽样分布定理}{9}{section.2}%
+\contentsline {subsection}{\numberline {2.1}计算公式}{9}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}似然比与\(\chi ^2\)分布的极限近似性}{9}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}特征函数的推导}{10}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}近似公式的提出}{10}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}多元方差分析的应用}{10}{subsubsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.2}编程实现}{11}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}测试结果}{15}{subsection.2.3}%

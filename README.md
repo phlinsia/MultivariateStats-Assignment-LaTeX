@@ -11,3 +11,4 @@ LaTeX assignments of the Applied Multivariate Statistical Analysis (Johnson, Wic
 - Assignment(3)/作业3:5.1, 5.5, a scatter plot of $(n-1)\frac{p}{n-p}F_{p,n-p}(\alpha)$
 - Assignment(4)/作业4:6.6,6.7,6.8,6.13
 - midterm_test/期中考试:2.20,4.8,2.32,4.18,5.1,4.11,Result 5.1 and Proof(Textbook/教材证明题)
+- project/课程设计项目: 关于EM算法和Bartlett检验的证明和作图 / Proof and figure of the EM algorithm and Bartlett's test.
